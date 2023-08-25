@@ -4,11 +4,12 @@ from category_encoders import TargetEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import FunctionTransformer
 
-CAT_FEATURES = [
-    "season", 
-    "weather"
-]
+CAT_FEATURES = ["season", "weather"]
 
+
+def cat_namer(nums: int) -> str:
+    """정수형으로 주어진 데이터를 문장으로 바꿔줌"""
+    return str(nums)
 
 
 # TODO: 전처리 파이프라인 작성
@@ -17,7 +18,6 @@ CAT_FEATURES = [
 # 3. 범주형 변수(CAT_FEATURES)는 타겟 인코딩 적용 (from category_encoders import TargetEncoder)
 preprocess_pipeline = ColumnTransformer(
     transformers=[
-        
         ("target_encoder", TargetEncoder(), CAT_FEATURES),
     ],
     remainder="passthrough",
